@@ -1,0 +1,23 @@
+ID,Assumptions,Threats description,STRIDE type,Affected Components,Real threats?
+6,"1. The attacker can submit code to remote repo;
+2. The server has pulled and been running the code submitted by the attacker;
+3. Code run as root on the server.",The attacker uses the malicious code to gain root access to the server.,Elevation of privilege,Victim’s server,Yes
+8,"1. An attacker can browse the project's yml file;
+2. The developer has left the keys to the third-party services they need to use in the yml file that configures GitHub Actions.","Not only can the attacker use these third-party services, but the attacker can also push code to the remote code repository where the yml file is located.",Information disclosure,"Third-party services
+The remote code repository",No
+5,"1. The attacker can submit code to remote repo;
+2. The server has pulled and been running the malicious code submitted by the attacker.",An attacker submit malicious code to the project on GitHub and get a shell of the server running the code.,Elevation of privilege,Victim’s server,Yes
+4,"1. The attacker submits malicious code that can cause Denial of Service (DoS) to remote repo;
+2. The server has pulled and been running the code submitted by the attacker.","An attacker submit malicious code can crash the server running the code, causing a Denial of Service (DoS).",DoS,Victim’s server,Yes
+9,The attacker has gained push access to the code repository on GitHub.,The attacker can launch a push request to a repository on GitHub and can delete the repository.,Elevation of privilege,The remote code repository,No
+1,"1. Remote repo & running server reachable by the attacker;
+2. The source code has security vulnerabilities.",Exploit a vulnerability in the code in the remote repository to attack the server running the code.,Information disclosure,Victim’s server,Yes
+10,The attacker can reach the remote repo (e.g. through internet).,"An unauthenticated and non privileged attacker can still submit custom code into the remote repo to prepare the first step of another attack, e.g. turning off logging service or cause a Denial of Service.","Elevation of privilege, Tampering",The remote code repository,No
+11,"1. GitHub uses the HTTPS protocol;
+2. The attacker has compromised the HTTP protocol on GitHub.","If an attacker compromises a http protocol on GitHub, the attacker can steal other users’ identities by using HTTP by running a man in the middle attack.",Spoofing,GitHub engine,No
+2,"1. The attacker finds the leaked information;
+2. The attacker can (remotely) interact with the remote repo.","An attacker uses leaked (e.g. on Github) configuration file to interact with the remote repo, potentially jeopardize running code and submitting malicious code.",Information disclosure,Victim’s server,Yes
+7,"1. Permission management is properly implemented in the remote (GitHub) provided repository hosting service to differentiate user access to the code repository;
+2. An attacker has the right to submit a bogus push request to a remote repository.","The attacker submits the same fake push request to other remote code repositories, causing a Denial of Service attack.",DoS,Other remote code repositories,No
+3,"1. The attacker carries out a successful social engineering attack (attackers communicate legitimately with others, manipulating and exploiting human qualities to achieve their attack) and gets authentication credentials;
+2. The credentials are valid.",Spoofing a remote repo admin by stealing the authentication credentials via a social engineering attack.,Spoofing,The remote code repository,Yes
